@@ -3,7 +3,7 @@ import { ideas } from '../data/ideas'
 
 export default function Home() {
   const navigate = useNavigate()
-  const featuredIdeas = ideas.slice(0, 6)
+  const featuredIdeas = [...ideas].sort((a, b) => (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)).slice(0, 6)
 
   return (
     <div className="flex flex-col">

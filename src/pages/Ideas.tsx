@@ -17,7 +17,9 @@ const riskColors: Record<string, string> = {
 
 export default function Ideas() {
   const [activeTab, setActiveTab] = useState('all')
-  const filtered = getIdeasByCategory(activeTab)
+  const filtered = getIdeasByCategory(activeTab).sort((a, b) =>
+    (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)
+  )
 
   return (
     <div>
@@ -67,7 +69,12 @@ export default function Ideas() {
                     {idea.emoji}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <div className="font-black text-base" style={{ fontFamily: 'Poppins, sans-serif' }}>{idea.name}</div>
+                    <div className="flex items-center gap-2">
+                      <div className="font-black text-base" style={{ fontFamily: 'Poppins, sans-serif' }}>{idea.name}</div>
+                      {idea.isNew && (
+                        <span className="bg-[#FF2D78] text-white text-[10px] font-black px-2 py-0.5 rounded-full shrink-0 animate-pulse">NEW</span>
+                      )}
+                    </div>
                     <div className="text-gray-500 text-sm mt-0.5 leading-snug">{idea.tagline}</div>
                   </div>
                 </div>

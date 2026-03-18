@@ -20,7 +20,9 @@ const platforms = [
 
 export default function ThriftGuide() {
   const [activeTab, setActiveTab] = useState('all')
-  const filtered = getBrandsByCategory(activeTab)
+  const filtered = getBrandsByCategory(activeTab).sort((a, b) =>
+    (b.isNew ? 1 : 0) - (a.isNew ? 1 : 0)
+  )
 
   return (
     <div>
@@ -67,9 +69,14 @@ export default function ThriftGuide() {
               }}
             >
               <div className="text-3xl">{brand.emoji}</div>
-              <div>
-                <div className="font-black text-sm" style={{ fontFamily: 'Poppins, sans-serif', color: brand.category === 'avoid' ? '#991b1b' : 'white' }}>
-                  {brand.name}
+              <div className="flex-1">
+                <div className="flex items-center gap-2">
+                  <div className="font-black text-sm" style={{ fontFamily: 'Poppins, sans-serif', color: brand.category === 'avoid' ? '#991b1b' : 'white' }}>
+                    {brand.name}
+                  </div>
+                  {brand.isNew && (
+                    <span className="bg-white/30 text-white text-[10px] font-black px-2 py-0.5 rounded-full shrink-0">NEW</span>
+                  )}
                 </div>
                 <div className="text-xs font-semibold" style={{ color: brand.category === 'avoid' ? '#dc2626' : 'rgba(255,255,255,0.8)' }}>
                   Era: {brand.era}
