@@ -27,7 +27,7 @@ export default function Home() {
       {/* Stats Row */}
       <div className="flex divide-x divide-gray-100 bg-white shadow-sm">
         {[
-          { number: '9', label: 'Ideas to explore' },
+          { number: String(ideas.length), label: 'Ideas to explore' },
           { number: '$40', label: 'Start with this' },
           { number: '1 wk', label: 'First sale goal' },
         ].map(stat => (
@@ -71,6 +71,29 @@ export default function Home() {
           <div className="text-white/90 text-sm mb-3">Know exactly what to grab at Goodwill. Your secret weapon.</div>
           <div className="bg-white/20 rounded-full px-3 py-1 text-sm font-bold inline-block">Open Guide →</div>
         </Link>
+      </div>
+
+      {/* Guides */}
+      <div className="px-4 mb-4">
+        <h2 className="text-xl font-black mb-3" style={{ fontFamily: 'Poppins, sans-serif' }}>Hustle Guides 📖</h2>
+        <div className="flex flex-col gap-3">
+          <Link to="/guides/pricing" className="card-hover rounded-2xl overflow-hidden shadow-md block" style={{ background: 'linear-gradient(135deg, #00E5A0, #3b82f6)' }}>
+            <div className="p-5 text-white">
+              <div className="text-3xl mb-2">💰</div>
+              <div className="font-black text-lg mb-1" style={{ fontFamily: 'Poppins, sans-serif' }}>Pricing Guide</div>
+              <div className="text-white/90 text-sm mb-3">Don't undersell. Know your worth and charge it.</div>
+              <div className="bg-white/20 rounded-full px-3 py-1 text-sm font-bold inline-block">Read Guide →</div>
+            </div>
+          </Link>
+          <Link to="/guides/social-media" className="card-hover rounded-2xl overflow-hidden shadow-md block" style={{ background: 'linear-gradient(135deg, #FF2D78, #8B5CF6)' }}>
+            <div className="p-5 text-white">
+              <div className="text-3xl mb-2">📱</div>
+              <div className="font-black text-lg mb-1" style={{ fontFamily: 'Poppins, sans-serif' }}>Social Media Guide</div>
+              <div className="text-white/90 text-sm mb-3">Grow on Instagram, TikTok & Depop. Sell more.</div>
+              <div className="bg-white/20 rounded-full px-3 py-1 text-sm font-bold inline-block">Read Guide →</div>
+            </div>
+          </Link>
+        </div>
       </div>
 
       {/* Dad's Message */}

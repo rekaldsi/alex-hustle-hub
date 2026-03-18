@@ -6,6 +6,8 @@ import IdeaDetail from './pages/IdeaDetail'
 import ThriftGuide from './pages/ThriftGuide'
 import Tracker from './pages/Tracker'
 import Quiz from './pages/Quiz'
+import Pricing from './pages/guides/Pricing'
+import SocialMedia from './pages/guides/SocialMedia'
 
 export default function App() {
   return (
@@ -17,6 +19,8 @@ export default function App() {
         <Route path="/thrift" element={<ThriftGuide />} />
         <Route path="/tracker" element={<Tracker />} />
         <Route path="/quiz" element={<Quiz />} />
+        <Route path="/guides/pricing" element={<Pricing />} />
+        <Route path="/guides/social-media" element={<SocialMedia />} />
       </Routes>
       <BottomNav />
     </div>

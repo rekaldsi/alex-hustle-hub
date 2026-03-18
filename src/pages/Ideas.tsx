@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { getIdeasByCategory } from '../data/ideas'
+import { ideas as allIdeas, getIdeasByCategory } from '../data/ideas'
 
 const tabs = [
   { id: 'all', label: 'All' },
@@ -24,7 +24,7 @@ export default function Ideas() {
       {/* Header */}
       <div className="px-4 pt-8 pb-4 bg-white sticky top-0 z-10 border-b border-gray-100">
         <h1 className="text-2xl font-black mb-4" style={{ fontFamily: 'Poppins, sans-serif' }}>
-          9 Ways to Make Money 💡
+          {allIdeas.length} Ways to Make Money 💡
         </h1>
         <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
           {tabs.map(tab => (

@@ -56,6 +56,15 @@ const questions: Question[] = [
       { label: 'Clothes and vintage finds', value: 'clothes' },
     ],
   },
+  {
+    id: 6,
+    question: "What is your vibe with people? 🤝",
+    options: [
+      { label: 'Introvert — I prefer solo, behind-the-scenes work', value: 'introvert' },
+      { label: 'Extrovert — I love chatting, selling, connecting', value: 'extrovert' },
+      { label: 'Mixed — depends on the day', value: 'mixed' },
+    ],
+  },
 ]
 
 interface Result {
@@ -66,7 +75,43 @@ interface Result {
 }
 
 function getResult(answers: Record<number, string>): Result {
-  const { 1: q1, 2: q2, 4: q4, 5: q5 } = answers
+  const { 1: q1, 2: q2, 4: q4, 5: q5, 6: q6 } = answers
+
+  // Introvert → digital/creative ideas
+  if (q6 === 'introvert') {
+    if (q1 === 'writing' || q5 === 'digital') {
+      return {
+        type: 'The Digital Creative',
+        emoji: '🌸',
+        description: "Solo work, infinite scale. You create once and sell forever — no chatting required. Pure profit machine.",
+        ideaIds: ['digital-packs', 'caption-queen', 'custom-stickers'],
+      }
+    }
+    return {
+      type: 'The Quiet Craftsperson',
+      emoji: '🎨',
+      description: "You do your best work solo. Make beautiful things, sell them online — no small talk needed.",
+      ideaIds: ['digital-packs', 'custom-stickers', 'crochet-accessories'],
+    }
+  }
+
+  // Extrovert → in-person / relationship-driven hustles
+  if (q6 === 'extrovert') {
+    if (q5 === 'food' || q4 === 'school') {
+      return {
+        type: 'The School Hustler',
+        emoji: '📦',
+        description: "Your energy is your edge. You know your market — it's right around you every day. People buy from people they like.",
+        ideaIds: ['snack-preorders', 'dog-walking', 'tutoring'],
+      }
+    }
+    return {
+      type: 'The People-Powered Hustler',
+      emoji: '🤝',
+      description: "You thrive in person. Your charisma turns strangers into repeat customers. Use that energy.",
+      ideaIds: ['dog-walking', 'tutoring', 'snack-preorders'],
+    }
+  }
 
   if (q1 === 'writing') {
     return {
@@ -197,7 +242,7 @@ export default function Quiz() {
             className="block w-full py-3 rounded-2xl font-black text-white text-base text-center active:scale-95 transition-transform"
             style={{ background: 'linear-gradient(135deg, #FF2D78, #8B5CF6)' }}
           >
-            Browse All 9 Ideas
+            Browse All {ideas.length} Ideas
           </Link>
         </div>
       </div>
